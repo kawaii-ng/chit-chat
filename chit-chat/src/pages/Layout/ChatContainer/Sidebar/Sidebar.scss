@@ -1,0 +1,157 @@
+@import '../../../../theme/variables.scss';
+
+.sidebar {
+
+    width: 20%;
+    min-width: 300px;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+
+    .sidebar__headerWrap {
+
+        height: auto;
+        filter: drop-shadow(0px 5px 20px rgba($mainColor, 0.5));
+
+        .sidebar__header {
+
+            width: 100%;
+            height: 20%;
+            min-height: 150px;
+            background: white;
+            display: flex;
+            align-items: center;
+            clip-path: polygon(0 0, 100% 0, 100% 62%, 0 100%);    
+    
+            .sidebar__avatar {
+    
+                height: 50px;
+                width: auto;
+                border-radius: 50%;
+                margin-right: 20px;
+                margin-left: 20px;
+                object-fit: cover;
+    
+            }  
+
+            .sidebar__userName {
+
+                font-size: 2rem;
+
+            }
+            
+            .sidebar__button {
+
+                position: absolute;
+                right: 20px;
+                top: 20px;
+
+            }
+    
+        }
+
+    }
+
+    .sidebar__searchBox {
+        
+        margin: 2em 1em;
+        display: flex;
+        justify-content: space-between;
+
+        .sidebar__searchbar {
+            
+            width: 100%;
+            border: 3px solid $mainColor;
+            border-radius: 50px;
+            background: white;
+            padding: 5px 10px;
+            margin-right: 10px;
+            font-size: 0.8rem;
+    
+            &::placeholder{
+    
+                font-size: 0.8rem;
+    
+            }
+    
+            &:focus {
+    
+                outline: none;
+    
+            }
+
+            .sidebar__button {
+
+                color: $mainColor;
+
+            }
+
+
+        }
+
+
+    }
+
+    .sidebar__chatRoomSection {
+
+        display: flex;
+        flex-direction: column;
+        flex: 1;
+        overflow: scroll;
+
+        .sidebar__titleHeader {
+
+            display: flex;
+            align-items: center;
+            padding-left: 1em;
+            padding-right: 1em;
+            height: fit-content;
+
+            .sidebar__title {
+
+                font-size: 1.5rem;
+                color: $mainColor;
+                width: 100%;
+
+            } 
+
+        }
+
+        .sidebar__chatRoomList {
+
+            flex: 1;
+            width: 100%;
+            overflow: scroll;
+
+        }
+
+    }
+
+
+}
+
+.sidebar__button {
+
+    border-radius: 50%;
+    color: $secondColor;
+    background: transparent;
+    border: none;
+    transition: $smoothTrans;
+    font-size: 1.2rem;
+
+    &:hover {
+
+        background-color: transparent;
+        opacity: .7;
+        color: $secondColor;
+    }
+
+    &:active, &:visited, &:focus, &:checked {
+
+        box-shadow: 0px 0px 10px $secondColor !important;
+        background-color: transparent;
+        color: $secondColor;
+
+    }
+
+}

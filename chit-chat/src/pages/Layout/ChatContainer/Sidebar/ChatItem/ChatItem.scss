@@ -1,0 +1,66 @@
+@import '../../../../../theme/variables.scss';
+
+.chatItem {
+
+    display: flex;
+    align-items: center;
+    padding: 1em;
+    border-bottom: 0px solid $mainColor;
+    box-shadow: 0px 2px 7px rgba($mainColor, .2);
+    cursor: pointer;
+    background-color: white;
+    transition: $smoothTrans;
+    text-decoration: none;
+    color: black;
+
+    .chatItem__avatar {
+
+        width: 30%;
+        overflow: hidden;
+        text-align: center;
+        
+        img {
+
+            width: 50%;
+            border-radius: 50%;
+
+        }
+
+    }
+    
+    .chatItem__detail {
+
+        width: 60%;
+
+        .chatItem__title {
+
+            font-weight: 700;
+            font-size: 1rem;
+            width: 100%;
+            text-overflow: ellipsis; 
+            overflow: hidden; 
+            white-space: nowrap;
+
+        }
+
+        .chatItem__message {
+
+            font-size: 0.8rem;
+            width: 100%;
+            text-overflow: ellipsis; 
+            overflow: hidden; 
+            white-space: nowrap;
+
+        }
+
+    }
+
+    &:hover {
+
+        color: black;
+        background: lightgrey;
+        box-shadow: 0px 2px 7px rgba(lightgrey, .2);
+
+    }
+
+}

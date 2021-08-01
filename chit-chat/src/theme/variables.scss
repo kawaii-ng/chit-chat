@@ -1,0 +1,19 @@
+// colors 
+$mainColor: #1ac0a2;
+$secondColor: #ffae34;
+
+$shadeMain: #1bb798;
+
+// animation
+$smoothTrans: all 0.25s ease-in-out;
+
+// mixin
+
+@mixin centerItems($direction, $align){
+
+    display: flex;
+    flex-direction: $direction;
+    align-items: center;
+    justify-content: $align;
+
+}
