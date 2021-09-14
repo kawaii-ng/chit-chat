@@ -40,7 +40,11 @@ function ChatItem(props) {
 
     useEffect(()=>{
 
-        getLastMsg()
+        if(typeof lastMsg === "undefined"){
+
+            getLastMsg()
+
+        }
 
     }, [lastMsg])
 

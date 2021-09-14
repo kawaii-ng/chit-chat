@@ -24,17 +24,17 @@ function Toolbar() {
     return (
         <div className="toolbar">
             <div className="toolbar__list">
-                <Link>
+                <Link to="">
                     <Button className="toolbar__btn">
                         <FontAwesomeIcon icon={faCommentAlt} />
                     </Button>
                 </Link>
-                <Link>
+                <Link to="">
                     <Button className="toolbar__btn">
                         <FontAwesomeIcon icon={faCog} />
                     </Button>
                 </Link>
-                <Link>
+                <Link to="">
                     <Button className="toolbar__btn" onClick={()=>{handle_logout()}}>
                         <FontAwesomeIcon icon={faSignOutAlt} />
                     </Button>

@@ -79,10 +79,20 @@ function ChatRoom() {
 
     useEffect(()=>{
 
-        getChatroom();
-        getUser();
+        if(typeof chatRoom === 'undefined' && params.id){
 
-    }, [chatRoom, user])
+            getChatroom();
+            
+        }
+        
+        if(typeof user === 'undefined'){
+
+            getUser();
+
+        }
+
+
+    }, [chatRoom, user, params.id])
 
 
     if(!currentUser){
@@ -93,30 +103,36 @@ function ChatRoom() {
         return (
             <div className="chatRoom">
                 <div className="chatRoom__titleBar">
-                    <div className="chatRoom__avatar">
-                        <img src="https://avatars.dicebear.com/api/initials/Kw.svg" />
-                    </div>
-                    <div className="chatRoom__detail">
-                        <div>
-                            <div className="chatRoom__title">
-                                {/* {typeof chatRoom.chatroomTitle !== 'undefined'? chatRoom.chatroomTitle: ''} */}
-                            </div>
-                            <div className="chatRoom__lastSeem">
-                                Last seem at 21 Jul 2021 14:30
+                    {
+
+                        typeof chatRoom !== 'undefined' && params.id &&
+                        <>
+                        <div className="chatRoom__avatar">
+                            <img src={chatRoom.chatIcon} />
+                        </div>
+                        <div className="chatRoom__detail">
+                            <div>
+                                <div className="chatRoom__title">
+                                    {chatRoom.chatroomTitle}
+                                </div>
+                                <div className="chatRoom__lastSeem">
+                                    Last seem at 21 Jul 2021 14:30
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div className="chatRoom__buttons">
-                        <Button className="chatRoom__button">
-                            <FontAwesomeIcon icon={faHeart} />
-                        </Button>
-                        <Button className="chatRoom__button">
-                            <FontAwesomeIcon icon={faInfoCircle} />
-                        </Button>
-                    </div>
+                        <div className="chatRoom__buttons">
+                            <Button className="chatRoom__button">
+                                <FontAwesomeIcon icon={faHeart} />
+                            </Button>
+                            <Button className="chatRoom__button">
+                                <FontAwesomeIcon icon={faInfoCircle} />
+                            </Button>
+                        </div>
+                        </>
+                    }
                 </div>
                 <div className="chatRoom__chatContainer">
-                    <ChatBox />
+                    <ChatBox user={user}/>
                 </div>
             </div>
         )
