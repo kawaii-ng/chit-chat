@@ -157,10 +157,10 @@ function ChatBox(props) {
                                 {
 
                                     dialog.indexOf(d) === 0 || 
-                                    (dialog.indexOf(d) !== dialog.length - 1) &&
-                                    (new Date(d.time.seconds * 1000).getMonth() !== new Date(dialog[dialog.indexOf(d) + 1].time.seconds * 1000).getMonth() ||
-                                    new Date(d.time.seconds * 1000).getDate() !== new Date(dialog[dialog.indexOf(d) + 1].time.seconds * 1000).getDate() ||
-                                    new Date(d.time.seconds * 1000).getFullYear() !== new Date(dialog[dialog.indexOf(d) + 1].time.seconds * 1000).getFullYear())
+                                    (dialog.indexOf(d) !== 0) &&
+                                    (new Date(d.time.seconds * 1000).getMonth() !== new Date(dialog[dialog.indexOf(d) - 1].time.seconds * 1000).getMonth() ||
+                                    new Date(d.time.seconds * 1000).getDate() !== new Date(dialog[dialog.indexOf(d) - 1].time.seconds * 1000).getDate() ||
+                                    new Date(d.time.seconds * 1000).getFullYear() !== new Date(dialog[dialog.indexOf(d) - 1].time.seconds * 1000).getFullYear())
                                     ?
                                     <div className="chatBox__date">
                                         {new Date(d.time.seconds * 1000).getDate() + "/" + (new Date(d.time.seconds * 1000).getMonth()+1) + "/" + new Date(d.time.seconds * 1000).getFullYear()}
