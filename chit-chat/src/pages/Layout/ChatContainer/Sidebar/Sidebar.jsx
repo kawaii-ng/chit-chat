@@ -8,7 +8,7 @@ import Firebase from '../../../../Config/firebase'
 import { Button } from 'react-bootstrap';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPen, faSearch, faPlusCircle } from '@fortawesome/free-solid-svg-icons'
+import { faPen, faSearch, faPlusCircle, faSyncAlt } from '@fortawesome/free-solid-svg-icons'
 
 function Sidebar() {
 
@@ -16,7 +16,8 @@ function Sidebar() {
 
     const [isLoading, setIsLoading] = useState(true)
     const [user, setUser] = useState()
-    const [chatroomList, setChatroomList] = useState([])
+    const [chatroomList, setChatroomList] = useState()
+    const [isRefresh, setIsRefresh] = useState(false)
 
     const db = Firebase.firestore()
     const currentUser = Firebase.auth().currentUser
@@ -62,6 +63,12 @@ function Sidebar() {
 
     }
 
+    const refreshChat = () => {
+
+        setIsRefresh(true)
+
+    }
+
     useEffect(() => {
 
         if(typeof user !== 'undefined'){
@@ -76,14 +83,20 @@ function Sidebar() {
 
         }
 
-        getChatroomList();
+        if(typeof chatroomList === 'undefined' || isRefresh){
 
-    }, [user, chatroomList, isLoading])
+            getChatroomList();
+            setIsRefresh(false)
+
+        }
+
+    }, [user, chatroomList, isLoading, isRefresh])
 
 
     if(!currentUser){
 
         history.push('/')
+        return null
 
     }else{
 
@@ -118,6 +131,9 @@ function Sidebar() {
                                     ChatRoom
                                 </h1>
                                 <Button className="sidebar__button">
+                                    <FontAwesomeIcon icon={faSyncAlt} />
+                                </Button>
+                                <Button className="sidebar__button">
                                     <FontAwesomeIcon icon={faPlusCircle} />
                                 </Button>
                             </div>
@@ -125,6 +141,7 @@ function Sidebar() {
                                 
                                 {
     
+                                    typeof chatroomList !== 'undefined' &&
                                     chatroomList.map(chatroom => {
     
                                         return(

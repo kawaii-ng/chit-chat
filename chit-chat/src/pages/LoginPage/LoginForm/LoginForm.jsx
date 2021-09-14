@@ -92,7 +92,6 @@ function LoginForm() {
                 }else{
     
                     setStep('2')
-                    console.log('uid: ', res.user.uid)
     
                 }
             }) 

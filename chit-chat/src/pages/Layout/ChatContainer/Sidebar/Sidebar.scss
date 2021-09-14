@@ -96,6 +96,9 @@
 
         display: flex;
         flex-direction: column;
+        justify-content: center;
+        height: fit-content;
+        padding: 2em 0em;
         flex: 1;
         overflow: scroll;
 
