@@ -35,7 +35,7 @@ function InfoBox(props) {
                             Description
                         </div>
                         <div className="infoBox__info">
-                            {chatRoom.description}
+                            { chatRoom.description? chatRoom.description: "NA"}
                         </div>
                     </div>
                     <div className="infoBox__grid">

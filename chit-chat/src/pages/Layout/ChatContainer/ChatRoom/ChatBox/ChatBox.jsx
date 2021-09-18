@@ -16,6 +16,7 @@ function ChatBox(props) {
     const db = Firebase.firestore()
     const params = useParams()
 
+    const [id, setID] = useState(props.id)
     const [message, setMessage] = useState()
     const [dialog, setDialog] = useState()
 
@@ -47,6 +48,8 @@ function ChatBox(props) {
 
     const getDialog = () => {
 
+        setDialog();
+
         let newDialog = []
 
         db
@@ -71,6 +74,8 @@ function ChatBox(props) {
 
         })
         .catch(err=>console.log(err))
+
+        setID(params.id)
 
     }
 
@@ -122,7 +127,7 @@ function ChatBox(props) {
 
     useEffect(()=>{
 
-        if(typeof dialog === 'undefined' && params.id){
+        if(typeof dialog === 'undefined' && params.id || id !== params.id){
 
             getDialog()
 
@@ -135,12 +140,6 @@ function ChatBox(props) {
         }
 
     }, [dialog, params.id, message])
-
-    useEffect(()=>{
-
-        
-
-    }, [])
 
     return (
         <div className="chatBox">
@@ -178,10 +177,12 @@ function ChatBox(props) {
 
                 }
                 <div className="chatBox__inputContainer">
-                    <input 
+                    <textarea
                         type="text" 
                         className="chatBox__input" 
                         placeholder="Type in your message here"
+                        rows="1"
+                        spellCheck="false"
                         value={message}
                         onChange={e=>{setMessage(e.target.value)}}
                     />
