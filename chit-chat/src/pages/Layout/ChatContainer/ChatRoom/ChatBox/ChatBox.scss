@@ -49,12 +49,16 @@
 
         .chatBox__input {
     
+            display: flex;
+            align-items: center;
             margin: 0em 1em;
+            height: 40px;
             width: 60%;
+            overflow: scroll;
             border: 3px solid $mainColor;
             border-radius: 25px;
             font-size: 0.8rem;
-            padding: 0.5em 0.9em;
+            padding: .5em 0.9em;
             color: $shadeMain;
 
             &:focus {

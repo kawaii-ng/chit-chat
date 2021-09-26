@@ -13,12 +13,13 @@ import { Button } from 'react-bootstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faHeart, faInfoCircle } from '@fortawesome/free-solid-svg-icons'
 
-function ChatRoom() {
+function ChatRoom(props) {
 
     const params = useParams()
     const history = useHistory()
     const location = useLocation()
 
+    const [id, setID] = useState() 
     const [chatRoom, setChatRoom] = useState()
     const [user, setUser] = useState()
     const [liked, setLiked] = useState()
@@ -39,6 +40,7 @@ function ChatRoom() {
             if(!doc.emtpy){
 
                 setChatRoom({id: doc.id, ...doc.data()})
+                setID(doc.id)
 
             }            
 
@@ -76,16 +78,17 @@ function ChatRoom() {
 
     useEffect(()=>{
 
-        if(typeof user !== 'undefined' && typeof chatRoom !== 'undefined'){
+        if(typeof user !== 'undefined' && typeof chatRoom !== 'undefined' || id !== params.id){
 
             
             if(typeof likeList === 'undefined'){
 
                 setLikeList(user.favouriteChat)
+                console.log('updated likeList')
 
             }
 
-            if(typeof likeList !== 'undefined' && typeof liked === 'undefined'){
+            if(typeof likeList !== 'undefined'){
 
                 if(likeList.includes(chatRoom.id)){
 
@@ -150,7 +153,7 @@ function ChatRoom() {
 
     useEffect(()=>{
 
-        if(typeof chatRoom === 'undefined' && params.id){
+        if(typeof chatRoom === 'undefined' && params.id || params.id !== id){
 
             getChatroom();
             
@@ -196,7 +199,7 @@ function ChatRoom() {
                                     </div>
                                 </div>
                                 <div className="chatRoom__buttons">
-                                    <Button className="chatRoom__button" style={{background: liked? "orange":"transparent"}} onClick={handle_liked}>
+                                    <Button className="chatRoom__button" style={{background: liked? "white":"transparent", color: liked? "orange": "white"}} onClick={handle_liked}>
                                         <FontAwesomeIcon icon={faHeart} />
                                     </Button>
                                     <Button className="chatRoom__button" onClick={()=>{goto_info()}}>
@@ -208,7 +211,7 @@ function ChatRoom() {
                         }
                     </div>
                     <div className="chatRoom__chatContainer">
-                        <ChatBox user={user}/>
+                        <ChatBox user={user} id={id}/>
                     </div>
                     </>
                     :
@@ -220,7 +223,7 @@ function ChatRoom() {
 
                     params.type === "info" ?
                     <>
-                        <InfoBox chatRoom={chatRoom} />
+                        <InfoBox chatRoom={chatRoom} user={user} />
                     </>
                     :
                     ""

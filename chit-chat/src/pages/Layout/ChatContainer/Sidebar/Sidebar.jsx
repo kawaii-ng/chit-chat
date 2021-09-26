@@ -9,11 +9,13 @@ import { Button } from 'react-bootstrap';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faPen, faSearch, faPlusCircle, faSyncAlt } from '@fortawesome/free-solid-svg-icons'
+import Modal from '../../../../components/Modal/Modal';
 
 function Sidebar() {
 
     const history = useHistory()
 
+    const [isOpen, setIsOpen] = useState(false)
     const [isLoading, setIsLoading] = useState(true)
     const [user, setUser] = useState()
     const [chatroomList, setChatroomList] = useState()
@@ -53,19 +55,33 @@ function Sidebar() {
 
             snapshot.docs.forEach(doc => {
 
-                newList.push({id:doc.id, ...doc.data()})
+                var data = {id:doc.id, ...doc.data()}
+
+                if(!newList.includes(data)){
+
+                    newList.push(data)
+                }
 
             })
 
+
             setChatroomList(newList)
+
 
         })
 
     }
 
-    const refreshChat = () => {
+    // const refreshChat = () => {
 
-        setIsRefresh(true)
+    //     setIsRefresh(true)
+
+    // }
+
+    const addChat = () => {
+
+        setIsOpen(true)
+        console.log("opened")
 
     }
 
@@ -83,25 +99,23 @@ function Sidebar() {
 
         }
 
-        if(typeof chatroomList === 'undefined' || isRefresh){
+        if(typeof chatroomList === 'undefined'){
 
             getChatroomList();
-            setIsRefresh(false)
 
         }
 
     }, [user, chatroomList, isLoading, isRefresh])
 
-
     if(!currentUser){
 
-        history.push('/')
-        return null
+        return history.push('/')
 
     }else{
 
         return (
     
+            <>
             <div className="sidebar">
     
                 {
@@ -114,26 +128,26 @@ function Sidebar() {
                             <div className="sidebar__header">                
                                 <img className="sidebar__avatar" src={user.avatarUrl? user.avatarUrl:''} />
                                 <h1 className="sidebar__userName">{user.userName? user.userName:''}</h1>
-                                <Button className="sidebar__button">
+                                {/* <Button className="sidebar__button">
                                     <FontAwesomeIcon icon={faPen} />
-                                </Button>
+                                </Button> */}
                             </div>
                         </div>
-                        <div className="sidebar__searchBox">
+                        {/* <div className="sidebar__searchBox">
                             <input type="text" className="sidebar__searchbar" placeholder="Search for a ChatRoom" />
                             <Button className="sidebar__button" style={{color: '#1ac0a2'}}>
                                 <FontAwesomeIcon icon={faSearch} />
                             </Button>
-                        </div>
+                        </div> */}
                         <div className="sidebar__chatRoomSection">
                             <div className="sidebar__titleHeader">
                                 <h1 className="sidebar__title">
                                     ChatRoom
                                 </h1>
-                                <Button className="sidebar__button">
+                                {/* <Button className="sidebar__button" onClick={setIsRefresh(true)}>
                                     <FontAwesomeIcon icon={faSyncAlt} />
-                                </Button>
-                                <Button className="sidebar__button">
+                                </Button> */}
+                                <Button className="sidebar__button" onClick={addChat}>
                                     <FontAwesomeIcon icon={faPlusCircle} />
                                 </Button>
                             </div>
@@ -164,10 +178,19 @@ function Sidebar() {
     
                             </div>
                         </div>
+
                     </>
     
                 }
+
             </div>
+
+            {
+                isOpen &&
+                <Modal user={user} isOpen={isOpen} setIsOpen={setIsOpen} />
+            }
+            
+            </>
         )
 
     }

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import './ChatItem.scss'
-
+import { useHistory } from 'react-router'
 import Firebase from '../../../../../Config/firebase'
 
 function ChatItem(props) {
@@ -9,10 +9,9 @@ function ChatItem(props) {
     const [lastMsg, setLastMsg] = useState()
 
     const db = Firebase.firestore()
+    const history = useHistory();
 
     const getLastMsg = () => {
-
-        let newMsg = ''
 
         db
         .collection('ChatRoom')
@@ -38,19 +37,48 @@ function ChatItem(props) {
 
     }
 
+    const goto_chat = () => {
+
+        history.push(`/dashboard/chat/${props.data.id}`)
+        
+    }
+
     useEffect(()=>{
 
         if(typeof lastMsg === "undefined"){
 
             getLastMsg()
 
+        }else {
+
+            db
+            .collection("ChatRoom")
+            .doc(props.data.id)
+            .collection("Message")
+            .orderBy('time', 'desc')
+            .limit(1)
+            .onSnapshot(snapshot=>{
+
+                const changes = snapshot.docChanges();
+                changes.forEach(change => {
+
+                    if(change.type === 'added'){
+
+                        setLastMsg(change.doc.data().msg)
+
+                    }
+
+                })
+
+            })
+
         }
 
     }, [lastMsg])
 
     return (
-        <Link to={`/dashboard/chat/${props.data.id}`} className="chatItem">
-            <div className="chatItem__avatar">
+        <div className="chatItem" onClick={goto_chat}>
+            <div className="chatItem__avatar" >
                 <img src={props.data.chatIcon} />
             </div>
             <div className="chatItem__detail">
@@ -61,7 +89,7 @@ function ChatItem(props) {
                     {lastMsg}
                 </div>
             </div>
-        </Link>
+        </div>
     )
 }
 

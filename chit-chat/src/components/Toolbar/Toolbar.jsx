@@ -24,12 +24,12 @@ function Toolbar() {
     return (
         <div className="toolbar">
             <div className="toolbar__list">
-                <Link to="">
+                <Link to="/dashboard/chat">
                     <Button className="toolbar__btn">
                         <FontAwesomeIcon icon={faCommentAlt} />
                     </Button>
                 </Link>
-                <Link to="">
+                <Link to="/dashboard/setting">
                     <Button className="toolbar__btn">
                         <FontAwesomeIcon icon={faCog} />
                     </Button>

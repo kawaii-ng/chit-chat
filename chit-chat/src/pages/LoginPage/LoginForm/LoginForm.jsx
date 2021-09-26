@@ -61,7 +61,7 @@ function LoginForm() {
             .doc(user.uid)
             .set(newUser)
 
-            history.push(`/dashboard/chat`)
+            history.push("/dashboard/chat")
 
         }else{
 
@@ -87,7 +87,7 @@ function LoginForm() {
     
                 if(!doc.empty && typeof doc.data() !== 'undefined'){
     
-                    history.push(`/dashboard/chat`)
+                    history.push("/dashboard/chat")
                     
                 }else{
     

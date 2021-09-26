@@ -13,8 +13,8 @@ function DashboardPage() {
             <Router>
                 <Toolbar />
                 <Switch>
+                    <Route path="/dashboard/setting" component={SettingContainer} exact/>
                     <Route path="/dashboard/:type/:id?" component={ChatContainer} />
-                    <Route path="/dashboard/setting" component={SettingContainer} />
                 </Switch>
             </Router>
 
