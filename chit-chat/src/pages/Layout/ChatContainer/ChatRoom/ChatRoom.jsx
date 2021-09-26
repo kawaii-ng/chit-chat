@@ -223,7 +223,7 @@ function ChatRoom(props) {
 
                     params.type === "info" ?
                     <>
-                        <InfoBox chatRoom={chatRoom} />
+                        <InfoBox chatRoom={chatRoom} user={user} />
                     </>
                     :
                     ""

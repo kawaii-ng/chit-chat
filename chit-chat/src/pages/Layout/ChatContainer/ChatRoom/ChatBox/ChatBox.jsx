@@ -176,20 +176,26 @@ function ChatBox(props) {
                     })
 
                 }
-                <div className="chatBox__inputContainer">
-                    <textarea
-                        type="text" 
-                        className="chatBox__input" 
-                        placeholder="Type in your message here"
-                        rows="1"
-                        spellCheck="false"
-                        value={message}
-                        onChange={e=>{setMessage(e.target.value)}}
-                    />
-                    <Button className="chatBox__button" onClick={()=>{sendMessage(message)}}>
-                        <FontAwesomeIcon icon={faPaperPlane} />
-                    </Button>
-                </div>
+                {
+                    params.id?
+                    <div className="chatBox__inputContainer">
+                        <textarea
+                            type="text" 
+                            className="chatBox__input" 
+                            placeholder="Type in your message here"
+                            rows="1"
+                            spellCheck="false"
+                            value={message}
+                            onChange={e=>{setMessage(e.target.value)}}
+                        />
+                        <Button className="chatBox__button" onClick={()=>{sendMessage(message)}}>
+                            <FontAwesomeIcon icon={faPaperPlane} />
+                        </Button>
+                    </div>
+                    :
+                    ""
+
+                }
             </div>
         </div>
     )

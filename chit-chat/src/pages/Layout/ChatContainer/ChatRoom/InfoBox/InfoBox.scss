@@ -139,8 +139,18 @@
 
             .infoBox__info {
 
-                height: 50%;
+                height: fit-content;
                 @include centerItems(column, center);
+
+                .infoBox__userAvatar {
+
+                    margin: 1em;
+                    width: 100px;
+                    height: 100px;
+                    border-radius: 50%;
+                    overflow: hidden;
+
+                }
 
             }
 
@@ -154,6 +164,24 @@
 
             }
     
+        }
+
+    }
+
+    .del-btn {
+
+        background: grey;
+        border: none;
+        border-radius: 12px;
+        width: 30%;
+        margin-top: 2em;
+        margin-bottom: 5em;
+        padding: 1em;
+        box-shadow: none;
+        transition: $smoothTrans;
+
+        &:hover {
+            background: red;
         }
 
     }

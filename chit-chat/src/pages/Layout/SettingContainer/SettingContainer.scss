@@ -1,0 +1,109 @@
+@import '../../../theme/variables.scss';
+
+.settingContainer {
+
+    margin-left: 10vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+
+    h1 {
+
+        color: $mainColor;
+
+    }
+
+    .settingContainer__avatar {
+
+        margin: 3em;
+        padding: 0em;
+        height: 200px;
+        width: 200px;
+        border-radius: 50%;
+        overflow: hidden;
+        border: 10px solid white;
+        box-shadow: 0px 0px 60px rgba($mainColor, .5);
+        @include centerItems(row, center);
+
+        img {
+
+            width: 100%;
+            height: 100%;
+
+        }
+
+    }
+
+    .settingContainer__form {
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        lable {
+
+            margin: 1em;
+
+        }
+
+        input {
+
+            margin: 1em;
+            border: none;
+            border-bottom: 2px solid rgba($mainColor, 1);
+            text-align: center;
+
+            &:focus, &:active {
+
+                outline-style: none;
+
+            }
+
+        }
+
+        .settingContainer__btn {
+
+            margin: 3em 1em;
+            border: none;
+            background:rgba($mainColor, 1);
+            padding: .5em 2em;
+            border-radius: 50px;
+            color: white;
+            font-weight: 700;
+
+            transition: all .25s ease-in-out;
+
+            &:hover {
+
+                opacity: .7;
+
+            }
+
+        }
+
+        .reset {
+
+            background: transparent;
+            color:rgba($mainColor, 1);
+            border: 2px solid rgba($mainColor, 1);
+            transition: all .25s ease-in-out;
+
+        }
+
+        .disable {
+
+            background: grey;
+
+            &:hover {
+
+                opacity: 1;
+
+            }
+
+        }
+
+    }
+
+}

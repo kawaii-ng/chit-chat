@@ -13,7 +13,7 @@ function ChatBubble(props) {
         if(ago>60*60*24){
             
             // a day ago
-            return `${time.getHours() > 10? time.getHours():'0'+time.getHours()}:${time.getMinutes() > 10? time.getMinutes():'0'+time.getMinutes()}`
+            return `${time.getHours() > 9? time.getHours():'0'+time.getHours()}:${time.getMinutes() > 9? time.getMinutes():'0'+time.getMinutes()}`
             
         }else if(ago>60*60){
             

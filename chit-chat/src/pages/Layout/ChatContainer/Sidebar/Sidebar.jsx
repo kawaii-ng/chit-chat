@@ -107,11 +107,9 @@ function Sidebar() {
 
     }, [user, chatroomList, isLoading, isRefresh])
 
-
     if(!currentUser){
 
-        history.push('/')
-        return null
+        return history.push('/')
 
     }else{
 

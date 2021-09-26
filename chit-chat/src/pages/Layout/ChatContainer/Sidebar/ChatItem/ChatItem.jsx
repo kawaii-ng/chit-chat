@@ -64,7 +64,6 @@ function ChatItem(props) {
 
                     if(change.type === 'added'){
 
-                        console.log("changes: ", change.doc.data().msg)
                         setLastMsg(change.doc.data().msg)
 
                     }
